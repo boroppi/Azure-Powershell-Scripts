@@ -28,11 +28,23 @@ $subnetConfig = Add-AzureRmVirtualNetworkSubnetConfig `
 #Associate the subnet to the virtual network
 $virtualNetwork | Set-AzureRmVirtualNetwork
 
+#grab the vnet
+$vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $resourceGroup -Name burakVnet
+
+#grab the subnet
+$subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet
+
 #Get the Application Gateway config
-$gw = Get-AzureRmApplicationGateway -Name GatewayName -ResourceGroupName $resourceGroup
+#$gw = Get-AzureRmApplicationGateway -Name GatewayName -ResourceGroupName $resourceGroup
+$gw = Get-AzureRmApplicationGateway -ResourceGroupName aaaaa -Name APGW-burak-test
 
 #Set the new virtual network and store the config into a new variable
-$gw2 = Set-AzureRmApplicationGatewayIPConfiguration -SubnetId "/subscriptions/999999-9915-4b1c-accf-0c984bed2311/resourceGroups/RGName/providers/Microsoft.Network/virtualNetworks/NewVirtualNetwork/subnets/default" -ApplicationGateway $gw -Name $gw.GatewayIPConfigurations.name
+#$gw2 = Set-AzureRmApplicationGatewayIPConfiguration -SubnetId "/subscriptions/999999-9915-4b1c-accf-0c984bed2311/resourceGroups/RGName/providers/Microsoft.Network/virtualNetworks/NewVirtualNetwork/subnets/default" -ApplicationGateway $gw -Name $gw.GatewayIPConfigurations.name
+
+$gw2 = Set-AzureRmApplicationGatewayIPConfiguration `
+    -Subnet $subnet `
+    -ApplicationGateway $gw `
+    -Name $gw.GatewayIPConfigurations.name
 
 #Stop the Gateway (you can't change the virtual network / subnet if the Gateway is running)
 Stop-AzureRmApplicationGateway -ApplicationGateway $gw
