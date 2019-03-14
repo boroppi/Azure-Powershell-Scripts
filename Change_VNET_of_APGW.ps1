@@ -5,7 +5,7 @@ $subscription = "0013tbsdev08wrk"
 $resourceGroup = "aaaaa"
 
 #Get list of azure service locations
-#Get-AzureRmLocation |Format-Table
+#Get-AzureRmLocation | Format-Table
 
 $location = "canadacentral"
 
