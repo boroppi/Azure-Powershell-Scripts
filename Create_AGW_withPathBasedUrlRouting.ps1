@@ -3,6 +3,7 @@ $resourceGroup = "aaaaa"
 $location = "canadacentral"
 
 $agwName = "burakVNET2"
+$pipName = "burakAGPublicIPAddress"
 
 Connect-AzureRmAccount
 
@@ -25,7 +26,7 @@ $vnet = New-AzureRmVirtualNetwork `
 $pip = New-AzureRmPublicIpAddress `
     -ResourceGroupName $resourceGroup `
     -Location $location `
-    -Name burakAGPublicIPAddress `
+    -Name $pipName `
     -AllocationMethod Dynamic
 
     
