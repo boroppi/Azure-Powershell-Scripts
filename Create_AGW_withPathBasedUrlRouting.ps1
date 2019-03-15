@@ -85,8 +85,8 @@ $sku = New-AzureRmApplicationGatewaySku `
     
 $appgw = New-AzureRmApplicationGateway `
     -Name myAppGateway `
-    -ResourceGroupName myResourceGroupAG `
-    -Location eastus `
+    -ResourceGroupName $resourceGroup `
+    -Location $location `
     -BackendAddressPools $defaultPool `
     -BackendHttpSettingsCollection $poolSettings `
     -FrontendIpConfigurations $fipconfig `
