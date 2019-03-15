@@ -25,7 +25,7 @@ $vnet = New-AzureRmVirtualNetwork `
 $pip = New-AzureRmPublicIpAddress `
     -ResourceGroupName $resourceGroup `
     -Location $location `
-    -Name myAGPublicIPAddress `
+    -Name burakAGPublicIPAddress `
     -AllocationMethod Dynamic
 
     
@@ -72,7 +72,7 @@ $defaultlistener = New-AzureRmApplicationGatewayHttpListener `
     -FrontendPort $frontendport
 $frontendRule = New-AzureRmApplicationGatewayRequestRoutingRule `
     -Name path-based `
-    -RuleType PathBasedRouting `
+    -RuleType Basic `
     -HttpListener $defaultlistener `
     -BackendAddressPool $defaultPool `
     -BackendHttpSettings $poolSettings
